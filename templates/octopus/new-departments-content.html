@@ -1,0 +1,70 @@
+{% if request.session.is_login %}
+    <section role="main" class="content-body">
+					<header class="page-header">
+{#						<h2>Phòng Ban</h2>#}
+					</header>
+                        <div class="col-md-6" style="">
+							<form  action="" method="post">{% csrf_token %}
+								<header class="panel-heading">
+										<div class="panel-actions">
+											<a href="#" class="fa fa-caret-down"></a>
+											<a href="#" class="fa fa-times"></a>
+										</div>
+
+										<h2 class="panel-title">Nhập tên phòng ban</h2>
+									</header>
+									<div class="panel-body">
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Tên<span class="required">*</span></label>
+											<div class="col-sm-9">
+												<input type="text" name="departments" class="form-control" placeholder="Nhân sự" required="" maxlength="100" minlength="5">
+											</div>
+										</div>
+									</div>
+									<footer class="panel-footer">
+                                        <button class="btn btn-primary">Submit</button>
+                                        {% for message in messages %}
+                                            <font color="red" style="margin-left: 5px">{{ message }}</font>
+{#                                            <script>#}
+{#                                            alert('{{ message }}');#}
+{#                                            </script>#}
+                                        {% endfor %}
+									</footer>
+							</form>
+						</div>
+                        <div class="col-md-6">
+								<table class="table table-bordered table-striped mb-none" id="datatable-default">
+									<thead>
+										<tr>
+											<th>Tên phòng ban</th>
+                                            <th>Thao tác</th>
+										</tr>
+									</thead>
+									<tbody>
+                                    {% for i in result %}
+                                        <tr class="gradeX">
+                                            <td>{{ i.1 }}</td>
+                                            <td class="actions">
+                                                <a href="/dashboard/list-departments/edit/{{ i.0 }}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                                                <a href="/dashboard/list-departments/delete/{{ i.0 }}" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                                            </td>
+{#                                        {%  for j in i %}#}
+{#                                                <td values="{{ j }}">{{ j }}</td>#}
+{#                                            <td class="actions">#}
+{#												<a href="" class="on-default edit-row"><i class="fa fa-pencil"></i></a>#}
+{#												<a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>#}
+{#											</td>#}
+{#                                        {% endfor %}#}
+                                        </tr>
+                                    {% endfor %}
+									</tbody>
+								</table>
+							</div>
+					</div>
+					<!-- end: page -->
+				</section>
+{% else %}
+        <script language="javascript">
+  window.location = "/";
+</script>
+{% endif %}

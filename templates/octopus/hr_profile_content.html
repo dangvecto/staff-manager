@@ -1,0 +1,104 @@
+{% if request.session.is_login %}
+    <section role="main" class="content-body">
+					<header class="page-header">
+{#                        <h2>Nhân viên mới</h2>#}
+					</header>
+					<!-- start: page -->
+					<div class="row">
+						<div class="col-md-6">
+							<section class="panel">
+									<header class="panel-heading">
+
+										<h2 class="panel-title">Thông tin tài khoản</h2>
+{#                                        {% for message in messages %}#}
+{#                                            <font color="red" style="margin-top:10px">{{ message }}</font><br>#}
+{#                                        {% endfor %}#}
+									</header>
+									<div class="panel-body">
+										<div class="validation-message">
+											<ul></ul>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Tài khoản</label>
+											<div class="col-sm-9">
+												<input type="text" name="fullname" class="form-control"  maxlength="40" minlength="5" readonly value="{{ request.session.account }}"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Email</label>
+											<div class="col-sm-9">
+												<input type="text" name="email" class="form-control" readonly value="{{ result.2 }}"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Phone</label>
+											<div class="col-sm-9">
+												<input type="text" name="phone" class="form-control" readonly value="{{ result.3 }}"/>
+											</div>
+										</div>
+                                        <div class="form-group">
+											<label class="col-sm-3 control-label">Last login </label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control" value="{{ result.4|date:'Y/m/d H:i:s' }}" readonly/>
+											</div>
+										</div>
+									</div>
+								</section>
+						</div>
+
+
+					</div>
+                    <div class="row">
+                        <form method="post" action="/dashboard/profile/changepasswd/{{ request.session.account }}">{% csrf_token %}
+                            <div class="col-md-6">
+							<section class="panel">
+									<header class="panel-heading">
+
+										<h2 class="panel-title">Đổi mật khẩu</h2>
+                                                                                    {% for message in messages %}
+                                            <font color="red" style="margin-top:10px">{{ message }}</font><br>
+                                        {% endfor %}
+									</header>
+									<div class="panel-body">
+										<div class="validation-message">
+
+
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Mật khẩu hiện tại <span class="required">*</span></label>
+											<div class="col-sm-6">
+												<input type="password" name="oldpasswd" class="form-control" required="required" maxlength="40" />
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Mật khẩu mới <span class="required">*</span></label>
+											<div class="col-sm-6">
+												<input type="password" name="newpasswd" class="form-control"  maxlength="40" required="required"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Nhắc lại <span class="required">*</span></label>
+											<div class="col-sm-6">
+												<input type="password" name="renewpasswd" title="" class="form-control"  maxlength="40" required="required"/>
+											</div>
+										</div>
+									</div>
+									<footer class="panel-footer">
+										<div class="row">
+											<div class="col-sm-9 col-sm-offset-3">
+												<button class="btn btn-primary">Submit</button>
+												<button type="reset" class="btn btn-default">Reset</button>
+											</div>
+										</div>
+									</footer>
+								</section>
+						</div>
+                        </form>
+                    </div>
+					<!-- end: page -->
+				</section>
+{% else %}
+        <script language="javascript">
+  window.location = "/";
+</script>
+{% endif %}

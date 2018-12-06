@@ -1,0 +1,36 @@
+- sửa kết nối db(setup mariadb ver 10) trong file core/function.py ( dùng tài khoản root mariadb, nếu dùng tài khoản không có quyền root thì phải phân
+quyền lại procedure cho tài khoản đó )
+	host='localhost'
+	db_user='root'
+	db_pass='passroot'
+	db_name='staffmanager'
+	
+- Trong setting nếu debug=True thì chỉ việc chạy ( dành cho dev ) . Còn nếu môi trường product để là False
+thì phải cài nginx là proxy
+	+ sửa 2 hàm tranfers_device ,tranfer_device_staff_to_it trong function.py(có comment trong rồi )
+	+ setup nginx dạng proxy 
+################	
+	server {
+    # the port your site will be served on
+    listen      80;
+    # the domain name it will serve for
+    server_name it.iliketv.net; # substitute your machine's IP address or FQDN
+    charset     utf-8;
+
+    # max upload size
+    client_max_body_size 75M;   # adjust to taste
+
+    location /assets {
+        #alias  /root/staff-information-manager/static; # your Django project's static files - amen$
+        alias /home/it.iliketv.net/public_html/static;
+        }
+
+    # Finally, send all non-media requests to the Django server.
+    location / {
+        proxy_pass  http://127.0.0.1:8000;
+        #proxy_redirect  default;
+    }
+   error_log /home/it.iliketv.net/logs/error.log;
+   access_log /home/it.iliketv.net/logs/access.log;
+}
+#################

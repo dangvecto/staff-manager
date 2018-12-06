@@ -1,0 +1,12 @@
+{% if request.session.is_login %}
+    <select name="device-user-list" id="device-user-list" class="form-control" required onchange="">
+        {% for i in result %}
+            <option value="{{ i.0 }}">{{ i.1 }}</option>
+    {% endfor %}
+    </select>
+
+{% else %}
+        <script language="javascript">
+  window.location = "/";
+</script>
+{% endif %}

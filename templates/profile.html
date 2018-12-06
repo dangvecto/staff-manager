@@ -1,0 +1,17 @@
+{% if request.session.is_login %}
+        {% if request.session.account_type == 1 %}
+            {% include 'octopus/hr_profile.html' %}
+        {% endif %}
+        {% if request.session.account_type == 2 %}
+            {% include 'octopus/hr_profile.html' %}
+        {% endif %}
+{#        {% if request.session.account_type == 2 %}#}
+{#            {%  include 'dashboard-it-body.html' %}#}
+{#        {% endif %}#}
+<!-- end document-->
+
+{% else %}
+        <script language="javascript">
+  window.location = "/";
+</script>
+{% endif %}

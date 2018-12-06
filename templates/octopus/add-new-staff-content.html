@@ -1,0 +1,220 @@
+{% if request.session.is_login %}
+    <script>
+    function myFunction() {
+  // Get the checkbox
+  var checkBox = document.getElementById("myCheck");
+  // Get the output text
+  var text = document.getElementById("text");
+  var checkBox1 = document.getElementById("myCheck1");
+  // Get the output text
+  var text1 = document.getElementById("text1");
+  // If the checkbox is checked, display the output text
+  if (checkBox.checked == true && checkBox1.checked!=true){
+    text.style.display = "block";
+    text1.style.display = "none";
+  } else if (checkBox.checked != true && checkBox1.checked==true) {
+    text.style.display = "none";
+    text1.style.display = "block";
+  }
+}
+    </script>
+    <section role="main" class="content-body">
+					<header class="page-header">
+{#                        <h2>Nhân viên mới</h2>#}
+					</header>
+					<!-- start: page -->
+					<div class="row">
+						<div class="col-md-6">
+							<form id="summary-form" action="" class="form-horizontal" method="post">{% csrf_token %}
+								<section class="panel">
+									<header class="panel-heading">
+
+										<h2 class="panel-title">Nhân viên mới</h2>
+                                        {% for message in messages %}
+                                            <font color="red" style="margin-top:10px">{{ message }}</font><br>
+                                        {% endfor %}
+									</header>
+									<div class="panel-body">
+										<div class="validation-message">
+											<ul></ul>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Họ Tên <span class="required">*</span></label>
+											<div class="col-sm-9">
+												<input type="text" name="fullname" class="form-control" title="Plase enter a name." placeholder="Nguyễn Văn A" required="required" maxlength="40" minlength="5"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Email <span class="required">*</span></label>
+											<div class="col-sm-9">
+												<input type="email" name="email" class="form-control" title="Please enter an email address." placeholder="eg.: abc@domain.co" maxlength="40" required="required"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Phone</label>
+											<div class="col-sm-9">
+												<input type="phone" name="phone" title="" class="form-control" placeholder="eg.:0922142111" maxlength="10" minlength="10"/>
+											</div>
+										</div>
+                                        <div class="form-group">
+											<label class="col-sm-3 control-label">Địa chỉ </label>
+											<div class="col-sm-9">
+												<input type="phone" name="address" title="" class="form-control" placeholder="eg.:Hà Nội" maxlength="40"/>
+											</div>
+										</div>
+                                        <div class="form-group">
+												<label class="col-md-3 control-label">Ngày sinh </label>
+												<div class="col-md-6">
+													<div class="input-group">
+														<span class="input-group-addon">
+															<i class="fa fa-calendar"></i>
+														</span>
+														<input type="text" data-plugin-datepicker="" class="form-control" name="staff_birthday">
+													</div>
+												</div>
+											</div>
+                                        <div class="form-group">
+											<label class="col-sm-3 control-label">Giới tính</label>
+											<div class="col-sm-6 ">
+												<select name="sex" class="form-control" required>
+                                                    <option value="">Chọn</option>
+                                                    <option value="1">Nam</option>
+                                                    <option value="0">Nữ</option>
+												</select>
+												<label class="error" for="company"></label>
+											</div>
+										</div>
+
+                                        <div class="form-group">
+											<label class="col-sm-3 control-label">Phòng ban</label>
+											<div class="col-sm-6">
+												<select name="departments" class="form-control" required>
+                                                    <option value="">Chọn</option>
+                                                    {%  for i in departments %}
+													<option value="{{ i.0 }}">{{ i.1 }}</option>
+                                                    {% endfor %}
+												</select>
+												<label class="error" for="company"></label>
+											</div>
+										</div>
+                                        <div class="form-group">
+											<label class="col-sm-3 control-label">Cấp bậc </label>
+											<div class="col-sm-6">
+												<select name="staff_type" class="form-control" required>
+                                                    <option value="">Chọn</option>
+													{%  for i in staff_type %}
+                                                        <option value="{{ i.0 }}">{{ i.1 }}</option>
+                                                    {% endfor %}
+												</select>
+												<label class="error" for="company"></label>
+											</div>
+										</div>
+                                        <div class="form-group">
+											<label class="col-sm-3 control-label">Loại hình</label>
+											<div class="col-sm-6">
+												<select name="work_type" class="form-control" required>
+                                                    <option value="">Chọn</option>
+													{%  for i in work_type %}
+                                                        <option value="{{ i.0 }}">{{ i.1 }}</option>
+                                                    {% endfor %}
+												</select>
+												<label class="error" for="company"></label>
+											</div>
+										</div>
+
+                                        <div class="form-group">
+												<label class="col-md-3 control-label">Làm từ</label>
+												<div class="col-md-6">
+													<div class="input-group">
+														<span class="input-group-addon">
+															<i class="fa fa-calendar"></i>
+														</span>
+														<input type="text" data-plugin-datepicker="" class="form-control" name="start_time">
+													</div>
+												</div>
+											</div>
+
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Ghi chú </label>
+											<div class="col-sm-9">
+												<textarea name="note" rows="5" title="Your resume is too short." class="form-control" placeholder="Ghi chú" ></textarea>
+											</div>
+										</div>
+                                        <div class="form-group" >
+											<label class="col-sm-3 control-label"></label>
+                                            <div class="col-sm-6">
+                                                <input type="radio" id="myCheck" onclick="myFunction()" class="checkbox-info" value="1" name="job_type"> <span class="active">Chính thức</span>
+                                                <input type="radio" id="myCheck1" onclick="myFunction()" class="checkbox-info" value="0" name="job_type"> <span class="active">Thử việc</span>
+                                                <select name="full_time" class="form-control" id="text" style="display:none">
+                                                    <option value="">Thời hạn hợp đồng</option>
+                                                    <option value="12">12 tháng</option>
+                                                    <option value="24">24 tháng</option>
+                                                    <option value="36">36 tháng</option>
+												</select>
+                                                <select name="test_time" class="form-control" id="text1" style="display:none">
+                                                    <option value="">Thời gian thử việc</option>
+                                                    <option value="1">1 tháng</option>
+                                                    <option value="2">2 tháng</option>
+                                                    <option value="3">3 tháng</option>
+												</select>
+											</div>
+										</div>
+                                        <div class="form-group">
+										</div>
+                                        <div class="form-group">
+										</div>
+                                        <div class="form-group">
+										</div>
+                                        <div class="form-group">
+										</div>
+									</div>
+									<footer class="panel-footer">
+										<div class="row">
+											<div class="col-sm-9 col-sm-offset-3">
+												<button class="btn btn-primary">Submit</button>
+												<button type="reset" class="btn btn-default">Reset</button>
+											</div>
+										</div>
+									</footer>
+								</section>
+							</form>
+						</div>
+                        <div class="col-md-6">
+								<table class="table table-bordered table-striped mb-none" id="datatable-default">
+									<thead>
+										<tr>
+											<th>Tên nhân viên</th>
+                                            <th>Phòng Ban</th>
+                                            <th>Chức Vụ</th>
+										</tr>
+									</thead>
+									<tbody>
+                                    {% for i in top_new_staff %}
+                                        <tr class="gradeX">
+                                            <td>{{ i.1 }}</td>
+                                            <td>{{ i.2 }}</td>
+                                            <td>{{ i.3 }}</td>
+{#                                            <td class="actions">#}
+{#                                                <a href="/dashboard/list-departments/edit/{{ i.0 }}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>#}
+{#                                                <a href="/dashboard/list-departments/delete/{{ i.0 }}" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>#}
+{#                                            </td>#}
+{#                                        {%  for j in i %}#}
+{#                                                <td values="{{ j }}">{{ j }}</td>#}
+{#                                            <td class="actions">#}
+{#												<a href="" class="on-default edit-row"><i class="fa fa-pencil"></i></a>#}
+{#												<a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>#}
+{#											</td>#}
+{#                                        {% endfor %}#}
+                                        </tr>
+                                    {% endfor %}
+									</tbody>
+								</table>
+							</div>
+					</div>
+					<!-- end: page -->
+				</section>
+{% else %}
+        <script language="javascript">
+  window.location = "/";
+</script>
+{% endif %}

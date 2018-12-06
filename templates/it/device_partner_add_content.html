@@ -1,0 +1,121 @@
+{% if request.session.is_login and request.session.account_type == 2 %}
+    <script>
+    function myFunction() {
+  // Get the checkbox
+  var checkBox = document.getElementById("myCheck");
+  // Get the output text
+  var text = document.getElementById("text");
+  var checkBox1 = document.getElementById("myCheck1");
+  // Get the output text
+  var text1 = document.getElementById("text1");
+  // If the checkbox is checked, display the output text
+  if (checkBox.checked == true && checkBox1.checked!=true){
+    text.style.display = "block";
+    text1.style.display = "none";
+  } else if (checkBox.checked != true && checkBox1.checked==true) {
+    text.style.display = "none";
+    text1.style.display = "block";
+  }
+}
+    </script>
+    <section role="main" class="content-body">
+					<header class="page-header">
+{#                        <h2>Nhân viên mới</h2>#}
+					</header>
+					<!-- start: page -->
+					<div class="row">
+						<div class="col-md-6">
+							<form id="summary-form" action="" class="form-horizontal" method="post">{% csrf_token %}
+								<section class="panel">
+									<header class="panel-heading">
+
+										<h2 class="panel-title">Thêm nhà cung cấp</h2>
+                                        {% for message in messages %}
+                                            <font color="red" style="margin-top:10px">{{ message }}</font><br>
+                                        {% endfor %}
+									</header>
+									<div class="panel-body">
+										<div class="validation-message">
+											<ul></ul>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Tên <span class="required">*</span></label>
+											<div class="col-sm-9">
+												<input type="text" name="partner_name" class="form-control"  placeholder="Máy chủ hà nội" required="required" maxlength="60" minlength="5"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Phone <span class="required">*</span></label>
+											<div class="col-sm-9">
+												<input type="phone" name="partner_phone" class="form-control"  placeholder="0249222222" maxlength="15" minlength="10" required="required"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Email</label>
+											<div class="col-sm-9">
+												<input type="email" name="partner_email" title="" class="form-control" placeholder="abc@domain.com" maxlength="40" minlength="10"/>
+											</div>
+										</div>
+                                        <div class="form-group">
+											<label class="col-sm-3 control-label">Địa chỉ </label>
+											<div class="col-sm-9">
+												<input type="text" name="partner_address" title="" class="form-control" placeholder="eg.:Hà Nội" maxlength="200"/>
+											</div>
+										</div>
+                                        <div class="form-group">
+											<label class="col-sm-3 control-label">Ghi chú </label>
+											<div class="col-sm-9">
+												<textarea name="partner_note" rows="5"  class="form-control" placeholder="Ghi chú" ></textarea>
+											</div>
+										</div>
+									</div>
+									<footer class="panel-footer">
+										<div class="row">
+											<div class="col-sm-9 col-sm-offset-3">
+												<button class="btn btn-primary">Submit</button>
+												<button type="reset" class="btn btn-default">Reset</button>
+											</div>
+										</div>
+									</footer>
+								</section>
+							</form>
+						</div>
+                        <div class="col-md-6">
+								<table class="table table-bordered table-striped mb-none" id="datatable-default">
+									<thead>
+										<tr>
+											<th>Tên</th>
+                                            <th>Phone</th>
+                                            <th>Email</th>
+										</tr>
+									</thead>
+									<tbody>
+                                    {% for i in top_10_device_partner %}
+                                        <tr class="gradeX">
+                                            <td>{{ i.1 }}</td>
+                                            <td>{{ i.2 }}</td>
+                                            <td>{{ i.3 }}</td>
+{#                                            <td class="actions">#}
+{#                                                <a href="/dashboard/list-departments/edit/{{ i.0 }}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>#}
+{#                                                <a href="/dashboard/list-departments/delete/{{ i.0 }}" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>#}
+{#                                            </td>#}
+{#                                        {%  for j in i %}#}
+{#                                                <td values="{{ j }}">{{ j }}</td>#}
+{#                                            <td class="actions">#}
+{#												<a href="" class="on-default edit-row"><i class="fa fa-pencil"></i></a>#}
+{#												<a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>#}
+{#											</td>#}
+{#                                        {% endfor %}#}
+                                        </tr>
+                                    {% endfor %}
+									</tbody>
+								</table>
+							</div>
+					</div>
+					<!-- end: page -->
+				</section>
+{% else %}
+        <script language="javascript">
+  window.location = "/";
+</script>
+{% endif %}

@@ -1,0 +1,42 @@
+{% if request.session.is_login %}
+    <section role="main" class="content-body">
+					<header class="page-header">
+{#						<h2><a href="/dashboard/list-departments/">Quay lại</a></h2>#}
+					</header>
+                        <div class="col-md-6" style="">
+							<form  action="" method="post">{% csrf_token %}
+								<header class="panel-heading">
+										<div class="panel-actions">
+											<a href="#" class="fa fa-caret-down"></a>
+											<a href="#" class="fa fa-times"></a>
+										</div>
+
+										<h2 class="panel-title">Tên phòng ban</h2>
+									</header>
+									<div class="panel-body">
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Tên<span class="required">*</span></label>
+											<div class="col-sm-9">
+												<input type="text" name="departments" class="form-control" required="" value="{{ name }}">
+											</div>
+										</div>
+									</div>
+									<footer class="panel-footer">
+                                        <button class="btn btn-primary">Submit</button>
+                                        {% for message in messages %}
+                                            <font color="red" style="margin-left: 5px">{{ message }}</font>
+{#                                            <script>#}
+{#                                            alert('{{ message }}');#}
+{#                                            </script>#}
+                                        {% endfor %}
+									</footer>
+							</form>
+						</div>
+					</div>
+					<!-- end: page -->
+				</section>
+{% else %}
+        <script language="javascript">
+  window.location = "/";
+</script>
+{% endif %}

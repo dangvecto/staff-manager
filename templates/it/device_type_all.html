@@ -1,0 +1,14 @@
+{% if request.session.is_login %}
+<select name="devicetypeid" id="devicetypeid" class="form-control" onchange="getcube1()">
+        <option>Chọn</option>
+        {% for i in result %}
+            <option value="{{ i.0 }}">{{ i.1 }}</option>
+    {% endfor %}
+    </select>
+
+
+{% else %}
+        <script language="javascript">
+  window.location = "/";
+</script>
+{% endif %}

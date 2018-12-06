@@ -1,0 +1,201 @@
+{% if request.session.is_login%}
+    <div class="nano">
+						<div class="nano-content">
+							<nav id="menu" class="nav-main" role="navigation">
+								<ul class="nav nav-main">
+                                    <li class="nav-active">
+										<a href="/">
+											<i class="fa fa-home" aria-hidden="true"></i>
+											<span>Dashboard</span>
+										</a>
+									</li>
+                                    {% if request.session.account_type == 2 %}
+                                        <li class="nav-parent">
+                                            <a>
+                                                <i class="fa fa-copy" aria-hidden="true"></i>
+                                                <span>Quản lý thiết bị</span>
+                                            </a>
+                                            <ul class="nav nav-children">
+                                                <li>
+                                                    <a href="/dashboard/it/device-partner-list">
+                                                         Danh sách đối tác cung cấp
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/dashboard/it/device-partner-add">
+                                                         Thêm đối tác
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/dashboard/it/device-type">
+                                                         Phân loại thiết bị
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/dashboard/it/device-receive">
+                                                         Nhập thiết bị
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/dashboard/it/device-no-transfer/">
+                                                         Danh sách thiết bị trong kho
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/dashboard/it/transfer-device/">
+                                                         Bàn giao thiết bị
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/dashboard/it/transfer-device-list/">
+                                                         Danh sách thiết bị đã bàn giao
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/dashboard/it/transfer-device-staff-to-it/">
+                                                         Nhận bàn giao
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/dashboard/it/transfer-device-staff-to-it-list/">
+                                                         Danh sách đã nhận bàn giao
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="">
+                                                         Thiết bị đã hỏng/thanh lý
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-parent">
+                                            <a>
+                                                <i class="fa fa-copy" aria-hidden="true"></i>
+                                                <span>Quản lý dịch vụ</span>
+                                            </a>
+                                            <ul class="nav nav-children">
+                                                <li>
+                                                    <a href="">
+                                                         Danh sách đối tác cung cấp
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="">
+                                                         Thêm đối tác
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="">
+                                                         Phân loại dịch vụ
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="">
+                                                         Dịch vụ đang sử dụng
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-parent">
+                                            <a>
+                                                <i class="fa fa-copy" aria-hidden="true"></i>
+                                                <span>Quản lý tài khoản email</span>
+                                            </a>
+                                            <ul class="nav nav-children">
+                                                <li>
+                                                    <a href="">
+                                                         Danh sách email
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="">
+                                                         Bàn giao email
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="">
+                                                         Thu hồi email
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-parent">
+                                    {% endif %}
+									<li class="nav-parent">
+										<a>
+											<i class="fa fa-copy" aria-hidden="true"></i>
+											<span>Quản Lý Phòng Ban</span>
+										</a>
+										<ul class="nav nav-children">
+											<li>
+												<a href="/dashboard/new-departments/">
+													 Thêm
+												</a>
+											</li>
+{#											<li>#}
+{#												<a href="/dashboard/list-departments/">#}
+{#													 Danh sách#}
+{#												</a>#}
+{#											</li>#}
+										</ul>
+									</li>
+                                    <li class="nav-parent">
+										<a>
+											<i class="fa fa-copy" aria-hidden="true"></i>
+											<span>Quản Lý Nhân Sự</span>
+										</a>
+										<ul class="nav nav-children">
+                                            <li>
+												<a href="/dashboard/staff-type/">
+													 Quản lý cấp bậc
+												</a>
+											</li>
+                                            <li>
+												<a href="/dashboard/work-type/">
+													 Quản lý loại hình
+												</a>
+											</li>
+											<li>
+												<a href="/dashboard/add-new-staff/">
+													 Thêm nhân sự mới
+												</a>
+											</li>
+											<li>
+												<a href="/dashboard/list-staff/">
+													 Danh sách nhân sự
+												</a>
+											</li>
+                                            <li>
+												<a href="/dashboard/upgrade-staff/">
+													 Chuyển chính thức
+												</a>
+											</li>
+                                            <li>
+												<a href="/dashboard/staff-quit/">
+													 Danh sách nhân sự đã nghỉ
+												</a>
+											</li>
+										</ul>
+									</li>
+                                    <li class="nav-parent">
+										<a>
+											<i class="fa fa-copy" aria-hidden="true"></i>
+											<span>Quản Lý Hồ Sơ</span>
+										</a>
+										<ul class="nav nav-children">
+											<li>
+												<a href="/dashboard/staff-file/list/">
+													 Danh sách còn thiếu
+												</a>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+{% else %}
+        <script language="javascript">
+  window.location = "/";
+</script>
+{% endif %}

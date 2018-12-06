@@ -1,0 +1,90 @@
+{% if request.session.is_login %}
+<!doctype html>
+<html class="fixed">
+	<head>
+
+		<!-- Basic -->
+		<meta charset="UTF-8">
+
+		<!-- Web Fonts  -->
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+
+		<!-- Vendor CSS -->
+		<link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" href="/assets/vendor/font-awesome/css/font-awesome.css" />
+		<link rel="stylesheet" href="/assets/vendor/magnific-popup/magnific-popup.css" />
+		<link rel="stylesheet" href="/assets/vendor/bootstrap-datepicker/css/datepicker3.css" />
+
+		<!-- Specific Page Vendor CSS -->
+		<link rel="stylesheet" href="/assets/vendor/select2/select2.css" />
+		<link rel="stylesheet" href="/assets/vendor/jquery-datatables-bs3//assets/css/datatables.css" />
+
+		<!-- Theme CSS -->
+		<link rel="stylesheet" href="/assets/stylesheets/theme.css" />
+
+		<!-- Skin CSS -->
+		<link rel="stylesheet" href="/assets/stylesheets/skins/default.css" />
+
+		<!-- Theme Custom CSS -->
+		<link rel="stylesheet" href="/assets/stylesheets/theme-custom.css">
+
+		<!-- Head Libs -->
+		<script src="/assets/vendor/modernizr/modernizr.js"></script>
+
+	</head>
+	<body>
+		<section role="main" class="content-body">
+					<header class="page-header">
+					</header>
+
+					<!-- start: page -->
+						<section class="panel">
+							<header class="panel-heading">
+								<div class="panel-actions">
+									<a href="#" class="fa fa-caret-down"></a>
+									<a href="#" class="fa fa-times"></a>
+								</div>
+
+								<h2 class="panel-title">Danh sách nhân viên</h2>
+							</header>
+							<div class="panel-body">
+								<table class="table table-bordered table-striped mb-none" id="datatable-default">
+									<thead>
+										<tr>
+											<th>Tên</th>
+											<th>Phone</th>
+											<th style="width: 40px">Email</th>
+                                            <th>Địa chỉ</th>
+											<th class="hidden-phone">Tác vụ</th>
+                                            <th class="hidden-phone">Số thiết bị đã mua</th>
+										</tr>
+									</thead>
+									<tbody>
+                                    {% for i in result %}
+										<tr class="gradeU">
+											<td><a>{{ i.1 }}</a></td>
+											<td>{{ i.2 }}</td>
+											<td>{{ i.3 }}</td>
+                                            <td>{{ i.4 }}</td>
+											<td class="active" style="width: 10px;text-align:center" >
+{#                                                <a href="/dashboard/list-staff/edit/{{ i.0 }}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>#}
+                                                <a href="" class="on-default remove-row" ><i class="fa fa-trash-o"></i></a>
+                                            </td>
+                                            <td>Số lượng</td>
+										</tr>
+                                    {% endfor %}
+									</tbody>
+								</table>
+							</div>
+						</section>
+
+					<!-- end: page -->
+
+				</section>
+	</body>
+</html>
+{% else %}
+        <script language="javascript">
+  window.location = "/";
+</script>
+{% endif %}
